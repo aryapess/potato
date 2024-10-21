@@ -20,17 +20,17 @@
 
     # If annotators are using a codebook, this will be linked at the top to the
     # instance for easy access
-    "annotation_codebook_url": "https://drexel0.sharepoint.com/:w:/r/sites/SocialNLP/Shared%20Documents/Social_NLP_Lab/Annotation/Personal%20Experiences-Drugs/modularized%20guidelines/task1.docx?d=wc77af092142e4a259ed68b503b170e5d&csf=1&web=1&e=wBZSK6",
+   # "annotation_codebook_url": "https://drexel0.sharepoint.com/:w:/r/sites/SocialNLP/Shared%20Documents/Social_NLP_Lab/Annotation/Personal%20Experiences-Drugs/modularized%20guidelines/task1.docx?d=wc77af092142e4a259ed68b503b170e5d&csf=1&web=1&e=wBZSK6",
 
     "data_files": [
-       "data_files/sample_posts5.csv"
+       "data_files/posts.csv"
       #  "data_files/drug.csv"
     ],
 
     "item_properties": {
         "id_key": "id",
         "text_key": "text",
-        "context_key": "context"
+       # "context_key": "context"
     },
 
 
@@ -44,33 +44,33 @@
     # How many seconds do you want the annotators spend on each instance, after
     # that, an alert will be sent per alert_time_each_instance seconds.
     "alert_time_each_instance": 10000000,
-    "surveyflow": {
-      "on": True,
-      #"order" : ['pre_annotation', 'prestudy_passed', 'prestudy_failed', 'post_annotation'],
-      "order" : ['pre_annotation', 'post_annotation'],
-      "pre_annotation": ['surveyflow/intro.jsonl', 'surveyflow/consent.jsonl', 'surveyflow/instruction.jsonl'],
-      # "post_annotation":['surveyflow/end.jsonl'],
-      "post_annotation": ['surveyflow/demographic_questions.jsonl','surveyflow/sud.jsonl','surveyflow/end.jsonl'],
-      # If set, we will automatically generate testing questions similar to the annotation instances, but explicitly ask the annotator to choose one option
-      "testing": ['surveyflow/testing.jsonl'],
-    },
-     "prestudy": {
-        "on": False,
-        "minimum_score": 0.8,
-        "groundtruth_key": 'whether_match',
-        "question_key": 'Whether the presented sentences are discussing the same scientific finding',
-        "answer_mapping": {'Yes': True, 'No': False},
-        "pass_page": 'surveyflow/prestudy_pass.jsonl',
-        "fail_page": 'surveyflow/prestudy_fail.jsonl'
-    },
+    # "surveyflow": {
+    #   "on": True,
+    #   #"order" : ['pre_annotation', 'prestudy_passed', 'prestudy_failed', 'post_annotation'],
+    #   "order" : ['pre_annotation', 'post_annotation'],
+    #   "pre_annotation": ['surveyflow/intro.jsonl', 'surveyflow/consent.jsonl', 'surveyflow/instruction.jsonl'],
+    #   # "post_annotation":['surveyflow/end.jsonl'],
+    #   "post_annotation": ['surveyflow/demographic_questions.jsonl','surveyflow/sud.jsonl','surveyflow/end.jsonl'],
+    #   # If set, we will automatically generate testing questions similar to the annotation instances, but explicitly ask the annotator to choose one option
+    #   "testing": ['surveyflow/testing.jsonl'],
+    # },
+    #  "prestudy": {
+    #     "on": False,
+    #     "minimum_score": 0.8,
+    #     "groundtruth_key": 'whether_match',
+    #     "question_key": 'Whether the presented sentences are discussing the same scientific finding',
+    #     "answer_mapping": {'Yes': True, 'No': False},
+    #     "pass_page": 'surveyflow/prestudy_pass.jsonl',
+    #     "fail_page": 'surveyflow/prestudy_fail.jsonl'
+    # },
     "annotation_schemes": [      
 
         {
             "annotation_type": "radio",
-            "name": "Action",
-            "description": "What is the primary purpose of the post? Is the post primarily asking for something from the community (Inquisition)? Or is it meant to share stories and lived experiences (Disclosure)?",
+            "name": "Label",
+            "description": "What is the best label for this post in terms of trust in GenAI",
             "labels": [
-               "Inquisition", "Disclosure"
+               "Trust", "Distrust", "Both"
             ],
 
             # If true, numbers [1-len(labels)] will be bound to each
@@ -79,53 +79,53 @@
             # to bind all labels to keys.
             "sequential_key_binding": True,                        
         }, 
-        {
-            "annotation_type": "multiselect",
-            "name": "Topics",
-            "description": "This is the main theme of the post",
-            "labels": [
-                { "name": "Symptoms",
-                  "tooltip_file": "tooltips/Symptoms.html"
-                },
-                {
-                  "name": "Guidance",
-                  "tooltip_file": "tooltips/Guidance.html"
-                 },
+        # {
+        #     "annotation_type": "multiselect",
+        #     "name": "Topics",
+        #     "description": "This is the main theme of the post",
+        #     "labels": [
+        #         { "name": "Symptoms",
+        #           "tooltip_file": "tooltips/Symptoms.html"
+        #         },
+        #         {
+        #           "name": "Guidance",
+        #           "tooltip_file": "tooltips/Guidance.html"
+        #          },
 
-                { "name": "Withdrawls",
-                  "tooltip_file": "tooltips/Withdrawal.html"
-                },
+        #         { "name": "Withdrawls",
+        #           "tooltip_file": "tooltips/Withdrawal.html"
+        #         },
 
-                { "name": "Recovery",
-                  "tooltip_file": "tooltips/Recovery.html",
-                },
-                { "name": "Relapse",
-                  "tooltip_file": "tooltips/Relapse.html",
-                },
-                { "name": "Sobriety",
-                  "tooltip_file": "tooltips/Sobriety.html",
-                },
-                { "name": "Overdose",
-                  "tooltip_file": "tooltips/Overdose.html",
-                },
-                { "name": "Social Support",
-                  "tooltip_file": "tooltips/Social_Support.html",
-                },
-                { "name": "Cultural Reference",
-                  "tooltip_file": "tooltips/Culture_Reference.html"
-                },
-                { "name": "Values",
-                  "tooltip_file": "tooltips/Values.html"
-                },
-                { "name": "Banter",
-                  "tooltip_file": "tooltips/Banter.html"
-                },
-                { "name": "Not Applicable",
-                  "tooltip_file": "tooltips/NA.html"
-                },
+        #         { "name": "Recovery",
+        #           "tooltip_file": "tooltips/Recovery.html",
+        #         },
+        #         { "name": "Relapse",
+        #           "tooltip_file": "tooltips/Relapse.html",
+        #         },
+        #         { "name": "Sobriety",
+        #           "tooltip_file": "tooltips/Sobriety.html",
+        #         },
+        #         { "name": "Overdose",
+        #           "tooltip_file": "tooltips/Overdose.html",
+        #         },
+        #         { "name": "Social Support",
+        #           "tooltip_file": "tooltips/Social_Support.html",
+        #         },
+        #         { "name": "Cultural Reference",
+        #           "tooltip_file": "tooltips/Culture_Reference.html"
+        #         },
+        #         { "name": "Values",
+        #           "tooltip_file": "tooltips/Values.html"
+        #         },
+        #         { "name": "Banter",
+        #           "tooltip_file": "tooltips/Banter.html"
+        #         },
+        #         { "name": "Not Applicable",
+        #           "tooltip_file": "tooltips/NA.html"
+        #         },
                 
-            ]
-        },
+        #     ]
+        # },
         
 
     ],
