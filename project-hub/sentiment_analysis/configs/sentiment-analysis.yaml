@@ -23,7 +23,7 @@
     "annotation_codebook_url": "",
 
     "data_files": [
-       "data_files/toy-example.csv"
+       "data_files/posts.csv"
     ],
 
     "item_properties": {
@@ -48,9 +48,9 @@
         {
             "annotation_type": "radio",
             "name": "sentiment",
-            "description": "What kind of sentiment does the given text hold?",
+            "description": "Best label for this post?",
             "labels": [
-               "positive", "neutral", "negative",
+               "Trust", "Distrust", "Both",
             ],
 
             # If true, numbers [1-len(labels)] will be bound to each
